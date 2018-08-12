@@ -1,2 +1,5 @@
 Tutorial
-update
+1. Create String for the sandwich name
+2. Pull sandwich data from json
+
+MainActivity.java

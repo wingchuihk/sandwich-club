@@ -16,10 +16,7 @@ public class JsonUtils {
         try{
             if (json == "" || json == null)
                 return null;
-
-            System.out.println("json:"+json);
-
-
+            
 
             //mainName
             String mainName = new JSONObject(json).getJSONObject("name").getString("mainName");
@@ -45,7 +42,7 @@ public class JsonUtils {
             JSONArray ingredients = new JSONObject(json).getJSONArray("ingredients");
             for (int i=0; i < ingredients.length(); i++){
                 ingredientList.add(ingredients.get(i).toString());
-//                System.out.println("in:"+ingredients.get(i).toString());
+
             }
 
             return new Sandwich(mainName, alsoKnownAsList, placeOfOrigin, description, image, ingredientList) ;

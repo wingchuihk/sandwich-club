@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -89,16 +90,28 @@ public class DetailActivity extends AppCompatActivity {
        mTV_description_tv=(TextView)findViewById(R.id.description_tv);
        mTV_ingredients_tv=(TextView)findViewById(R.id.ingredients_tv);
 
+        if (sandwich.getPlaceOfOrigin().isEmpty()||sandwich.getPlaceOfOrigin().equals("")){
+            mTV_origin_tv.setText(R.string.detail_error_message);
+        }else{
+            mTV_origin_tv.setText(sandwich.getPlaceOfOrigin());
+        }
 
-        mTV_origin_tv.setText(sandwich.getPlaceOfOrigin());
-        mTV_description_tv.setText(sandwich.getDescription());
+        if (sandwich.getDescription().isEmpty()||sandwich.getDescription().equals("")){
+            mTV_description_tv.setText(R.string.detail_error_message);
+        }else{
+            mTV_description_tv.setText(sandwich.getDescription());
+        }
 
-        mTV_also_known_tv.setText(
-                (Arrays.toString(sandwich.getAlsoKnownAs().toArray())).replace("[","").replace("]",""));
+        //                    (Arrays.toString(sandwich.getAlsoKnownAs().toArray())).replace("[", "").replace("]", ""));
+        if (sandwich.getAlsoKnownAs().size()==0){
+            mTV_also_known_tv.setText(R.string.detail_error_message);
+        }else mTV_also_known_tv.setText(
+                TextUtils.join(",", sandwich.getAlsoKnownAs()));
 
-        mTV_ingredients_tv.setText(
-                (Arrays.toString(sandwich.getIngredients().toArray())).replace("[","").replace("]",""));
-
+        if (sandwich.getIngredients().size()==0){
+            mTV_ingredients_tv.setText(R.string.detail_error_message);
+        }else mTV_ingredients_tv.setText(
+                TextUtils.join(",", sandwich.getIngredients()));
 
     }
 }

@@ -16,7 +16,7 @@ public class JsonUtils {
         try{
             if (json == "" || json == null)
                 return null;
-            
+
 
             //mainName
             String mainName = new JSONObject(json).getJSONObject("name").getString("mainName");
